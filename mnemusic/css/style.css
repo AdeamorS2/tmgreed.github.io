@@ -8,9 +8,10 @@ h1{
 }
 
 h2{
-    text-align: center;
     font-size: 20px;
-    display: inline-block;
+    width:100%;
+	display:block;
+	margin-left:0px;
 }
 
 body {
@@ -30,19 +31,16 @@ span{
     font-size: 18px;
 }
 
-img{
-    margin-left: 19%;
-    width: 60%;
-}
-
 a{
     padding: 5% 17px;
     line-height: 26.4px;
+	text-decoration: none;
 }
 
-
 ul{
-    margin-left: 30%;
+    margin-left: auto;
+	margin-right:auto;
+	display:table;
 }
 
 nav ul li {
@@ -70,11 +68,75 @@ nav ul li a[data-contraste="1"] {
 }
 
 #conteudo-pianista{
-    margin-left: 14%;
+
 }
 
-#modo-texto{
-    text-align: center;
-    
+#conteudo-texto{
+    text-align:center;
+}
+
+#opcoes{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centralizar{
+	width:70%;
+	margin:auto;
+	text-align:left;
+}
+
+
+/* FONTES */
+#fontes{
+	margin-top:3px;
+	margin-top:443px;
+}
+
+#github{
+	color: #A1F4EC;
+	text-align:right;
+	display:inline-block;
+	float:right;
+	width: 250px;
+	font-size: 16px;
+	margin-top: 55px;
+    margin-right: 5px;
+}
+
+#repositorio{
+	display:inline-block;
+	width: 250px;
+	text-align:center;
+}
+
+#img-bulma{
+	width:60px;
+	display:block;
+}
+
+
+.fontes-links{
+	display:inline-block;
+	padding: 0px;
+	line-height: 26.4px;
+	color: #A1F4EC;
+	font-family: 'Alegreya';
+}
+
+a.fontes-links:link {
+    color: #A1F4EC;
+}
+
+a.fontes-links:visited {
+    color: #A1F4EC;
+}
+
+a.fontes-links:hover {
+    color: #009bb2;
+}
+
+a.fontes-links:active {
+    color: #009bb2;
 }
 

@@ -3,11 +3,13 @@
     
     <head>
         <meta charset="utf-8">
-        <title>Programusician</title>
-        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <title>MneMúsica</title>
+        <meta name="description" content="Some TMGreed's personal projects.">
+        <link rel="icon" href="image/nota.png" type="image/x-icon">
+        
         <link rel="stylesheet" href="css/style.css">
         
-   
+        <!-- <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
         <script src="js/script.js" type="text/javascript"></script>
@@ -19,56 +21,52 @@
             
         </div>
 
-        <div class="row row-header">
-          <div class="container">
+        <div class="centralizar">
             <nav>
               <ul>
-                <li>
-                  <a href="#" data-contraste="1" id="modo-livre" title="Modo Livre">Modo Livre</a>
-                </li>
-                <li>
-                  <a href="#" data-contraste="0" id="modo-aprendizado" title="Modo Aprendizado">Modo Aprendizado</a>
-                </li>
-                <li>
-                  <a href="#" data-contraste="0" id="modo-pianista" title="Modo Pianista">Modo Pianista</a>
-                </li>
-                  
-                <li>
-                  <a href="#" data-contraste="0" id="caixa-texto" title="Caixa de Texto">Caixa de texto</a>
-                </li>
-
+                <div id="opcoes">
+                    <li>
+                      <a href="#" data-contraste="1" id="modo-normal" title="Modo de Ritmo Normal">Modo de Ritmo Normal</a>
+                    </li>
+                    <li>
+                      <a href="#" data-contraste="0" id="modo-variavel" title="Modo de Ritmo Variavel">Modo de Ritmo Variável</a>
+                    </li>
+                    <li>
+                      <a href="#" data-contraste="0" id="modo-texto" title="Caixa de texto">Caixa de Texto</a>
+                    </li>
+                  </div>
               </ul>
             </nav>
-          </div>
-        </div>
+        
+        
+            <div id="conteudo-normal">
+                <h2>Seja um Programador de Ritmo Constante!
+                </h2> 
+                <p>Não tem nada aqui x.x</p>
+            </div>
 
-        <div id="conteudo-livre">
-            <br>
-            <h2 style="margin-left: 31%;">Se aventure com o seu novo teclado musical!</h2> 
-        </div>
-    
-        <div id="conteudo-aprendizado" style="display:none">
-            <br>
-            <h2 style="margin-left: 27%;">Preste atenção nas teclas, não queremos perder o ritmo.</h2> 
-        </div>
-        
-        <div id="conteudo-pianista" 
-        style="display:none">
-            <br>
-            <h2 style="margin-left: 13%;">Você realmente tem o dom! Me ensine qualquer hora, tudo bem?</h2> 
-        </div>
-        
-        <div id="imagem">
-            <img src="image/keyboard.jpg" />
+            <div id="conteudo-variavel" style="display:none">
+                <h2>Você Consegue Tocar Esta Música?</h2> 
+                <p>Não tem nada aqui x.x</p>
+            </div>
+
+            <div id="imagem">
+
+            </div>
+
+            <div id="conteudo-texto" style="display:none">
+                <br>
+                <span id="conteudo"></span>
+            </div>
         </div>
         
-        <div id="modo-texto" style="display:none">
-            <br><br><br><br><br>
-            <span id="conteudo"></span>
+        <div id="fontes">
+            <p id="github">Este site é mantido pelo <a class="fontes-links" target="_blank"  href="https://pages.github.com/">GitHub Pages</a></p>
+            
+            
+            <a class="fontes-links" id="link-bulma" target="_blank"  href="https://github.com/TMGreed/tmgreed.github.io/"><img id="img-bulma" src="../images/ico.png">GitHub</a>
+            
         </div>
-    
-    
+        
     </body>    
-        
-     
 </html>

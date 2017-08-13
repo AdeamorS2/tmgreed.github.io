@@ -1,0 +1,194 @@
+/* TAGS */
+ body{
+	background: #000;
+}
+
+a{
+	text-decoration: none;
+}
+
+ h1, p, span, h2{
+	font-family: 'Alegreya';
+	color:#fff;
+}
+
+h2{
+	font-size: 22px;
+	text-align:center;
+	font-weight: bold;
+}
+
+h1{
+	font-size: 33px;
+	text-align:center;
+	margin-bottom:5%;
+	display: inline-block;
+    width: 53%;
+}
+
+p{
+	font-size: 16px;
+}
+
+ul li { 
+	display: inline; 
+}
+
+ul{
+	padding:0%;
+	width:800px;
+}
+
+img{
+	display:block;
+	border-radius: 5%;
+}
+
+li{
+	margin-top: 50px;
+	
+}
+
+span{
+	font-weight: bold;
+	font-size:20px;
+	display:block;
+	margin-top:10px;
+	text-align:center;
+	color:#000;
+}
+
+span, li, img{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+ 
+/* CLASSES */
+ 
+.centralizar{
+	width:70%;
+	margin:auto;
+	text-align:left;
+}
+
+.preview{
+	width:320px;
+	margin:7px;
+}
+
+.caixa{
+	display:inline-block;
+	margin:34px;
+	
+	border-radius: 20px;
+    width: 335px;
+	background-color:#FFF;
+}
+
+.descricao{
+	display: inline-block;
+    position: absolute;
+    margin-top: 100px;
+}
+
+.citacao{
+	font-style: italic;
+}
+
+ 
+/* IDS */
+
+#fry{
+	margin-top:150%;
+}
+
+#fry-img{
+	width:100%;
+}
+
+#projetos{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 370px;
+	float:left;
+}
+
+#img-bulma{
+	width:60px;
+	margin-left: 0px;
+}
+
+#fontes{
+	margin-left:3px;
+	margin-top:3px;
+}
+
+#github{
+	color: #A1F4EC;
+	text-align:right;
+	margin-right:3px;
+	margin-top:3px;
+	display:inline-block;
+	float:right;
+	width:250px
+}
+
+#repositorio{
+	display:inline-block;
+	text-align:left;
+	text-align:center;
+	width:250px
+}
+
+#fontes{
+	margin-left:3px;
+	margin-top:3px;
+}
+
+#dentro{
+	width: 24%;
+}
+
+/* EVENTOS LINKS FONTES*/
+
+a:link {
+    color: #A1F4EC;
+}
+
+a:visited {
+    color: #A1F4EC;
+}
+
+a:hover {
+    color: #009bb2;
+}
+
+a:active {
+    color: #009bb2;
+}
+
+
+@media screen and (max-width: 1129px) {
+
+h1{
+	font-size: 33px;
+	text-align:center;
+	margin-bottom:5%;
+	display: inline-block;
+	width: 100%;
+}
+	
+}
+
+
+@media screen and (max-width: 685px) {
+
+.descricao{
+	display: inline-block;
+    position: initial;
+    margin-top: 0px;
+}
+
+}

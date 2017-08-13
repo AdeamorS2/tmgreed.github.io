@@ -1,0 +1,65 @@
+
+body{
+	background: #000;
+}
+p2{
+	font: inheirit;
+}
+
+a{
+	text-decoration: none;
+}
+
+/* FONTES */
+#fontes{
+	margin-left:5px;
+	margin-top:3px;
+	margin-top:12%
+}
+
+#github{
+	color: #A1F4EC;
+	text-align:right;
+	display:inline-block;
+	float:right;
+	width: 250px;
+	font-size: 16px;
+	margin-top: 55px;
+    margin-right: 5px;
+}
+
+#repositorio{
+	display:inline-block;
+	width: 250px;
+	text-align:center;
+}
+
+#img-bulma{
+	width:60px;
+	display:block;
+}
+
+
+.fontes-links{
+	display:inline-block;
+	padding: 0px;
+	line-height: 26.4px;
+	color: #A1F4EC;
+	font-family: 'Alegreya';
+}
+
+a.fontes-links:link {
+    color: #A1F4EC;
+}
+
+a.fontes-links:visited {
+    color: #A1F4EC;
+}
+
+a.fontes-links:hover {
+    color: #009bb2;
+}
+
+a.fontes-links:active {
+    color: #009bb2;
+}

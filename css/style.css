@@ -1,3 +1,5 @@
+/* ############################### SITE ############################### */
+
 /* TAGS */
  body{
 	background: #000;
@@ -63,9 +65,7 @@ span, li, img{
 	margin-right:auto;
 }
 
- 
 /* CLASSES */
- 
 .centralizar{
 	width:70%;
 	margin:auto;
@@ -80,7 +80,6 @@ span, li, img{
 .caixa{
 	display:inline-block;
 	margin:34px;
-	
 	border-radius: 20px;
     width: 335px;
 	background-color:#FFF;
@@ -98,7 +97,6 @@ span, li, img{
 
  
 /* IDS */
-
 #fry{
 	margin-top:150%;
 }
@@ -151,7 +149,7 @@ span, li, img{
 	width: 24%;
 }
 
-/* EVENTOS LINKS FONTES*/
+/* ########################### AREA DE LINKS ########################### */
 
 a:link {
     color: #A1F4EC;

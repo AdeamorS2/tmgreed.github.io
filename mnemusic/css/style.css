@@ -1,3 +1,6 @@
+/* ############################### SITE ############################### */
+
+/* TAGS */
 h1{
     margin-top: 5%;
     margin-bottom: 4%;
@@ -59,18 +62,7 @@ nav ul li a[data-contraste="1"] {
   color: #000000;
 }
 
-#conteudo-aprendizado{
-
-}
-
-#conteudo-livre{
-    
-}
-
-#conteudo-pianista{
-
-}
-
+/* IDS */
 #conteudo-texto{
     text-align:center;
 }
@@ -80,6 +72,7 @@ nav ul li a[data-contraste="1"] {
     margin-right: auto;
 }
 
+/* CLASSES */
 .centralizar{
 	width:70%;
 	margin:auto;
@@ -87,7 +80,9 @@ nav ul li a[data-contraste="1"] {
 }
 
 
-/* FONTES */
+/* ########################### AREA DE LINKS ########################### */
+
+/* IDS */
 #fontes{
 	margin-top:3px;
 	margin-top:443px;
@@ -115,7 +110,7 @@ nav ul li a[data-contraste="1"] {
 	display:block;
 }
 
-
+/* CLASSES */
 .fontes-links{
 	display:inline-block;
 	padding: 0px;

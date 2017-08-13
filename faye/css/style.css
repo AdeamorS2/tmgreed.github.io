@@ -1,4 +1,6 @@
+/* ############################### SITE ############################### */
 
+/* TAGS */
 body{
 	background: #000;
 }
@@ -10,7 +12,9 @@ a{
 	text-decoration: none;
 }
 
-/* FONTES */
+/* ########################### AREA DE LINKS ########################### */
+
+/* IDS */
 #fontes{
 	margin-left:5px;
 	margin-top:3px;
@@ -39,7 +43,11 @@ a{
 	display:block;
 }
 
+#link-bulma{
+	text-align:center;
+}
 
+/* CLASSES */
 .fontes-links{
 	display:inline-block;
 	padding: 0px;

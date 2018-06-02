@@ -74,7 +74,8 @@ $(document).ready(function(){
 	$(document).on('change', '#palavra-pesquisa', function(){buscaPalavra();});
 	
 	$(document).on('click','#adicionar', function(){
-		var palavraPesquisa = $('#palavra-pesquisa').val().toLowerCase();
+		var palavraPesquisa = $('#palavra-pesquisa').val();
+		palavraPesquisa = removerAcentos(palavraPesquisa).toLowerCase();
 		if(palavras.indexOf(palavraPesquisa)>-1){
 			var novoConteudo = $('#frase').val()+' '+palavraPesquisa;
 			$('#frase').val(novoConteudo);
@@ -83,8 +84,8 @@ $(document).ready(function(){
 	});
 	
 	function buscaPalavra(){
-		var palavra = $('#palavra-pesquisa').val().toLowerCase();
-		palavra = removerAcentos(palavra);
+		var palavra = $('#palavra-pesquisa').val();
+		palavra = removerAcentos(palavra).toLowerCase();
 		if(caracteresEspeciais.indexOf(palavra)==-1){
 			if(palavra != ''){
 				$('#wordlist p').removeClass('palavra-encontrada');

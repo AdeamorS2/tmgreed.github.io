@@ -74,7 +74,7 @@ $(document).ready(function(){
 	$(document).on('change', '#palavra-pesquisa', function(){buscaPalavra();});
 	
 	$(document).on('click','#adicionar', function(){
-		var palavraPesquisa = $('#palavra-pesquisa').val();
+		var palavraPesquisa = $('#palavra-pesquisa').val().toLowerCase();
 		if(palavras.indexOf(palavraPesquisa)>-1){
 			var novoConteudo = $('#frase').val()+' '+palavraPesquisa;
 			$('#frase').val(novoConteudo);
@@ -83,18 +83,17 @@ $(document).ready(function(){
 	});
 	
 	function buscaPalavra(){
-		var palavra = $('#palavra-pesquisa').val();
+		var palavra = $('#palavra-pesquisa').val().toLowerCase();
 		palavra = removerAcentos(palavra);
 		if(caracteresEspeciais.indexOf(palavra)==-1){
 			if(palavra != ''){
-				console.log(palavra);
-				$('#wordlist p').hide();
-				$('#wordlist .'+palavra).show();
+				$('#wordlist p').removeClass('palavra-encontrada');
+				$('#wordlist .'+palavra).addClass('palavra-encontrada');
 			}else{
-				$('#wordlist p').show();
+				$('#wordlist p').removeClass('palavra-encontrada');
 			}
 		}else{
-			$('#wordlist p').show();			
+			$('#wordlist p').removeClass('palavra-encontrada');
 		}
 	}
 	
@@ -107,7 +106,7 @@ $(document).ready(function(){
 	function realizaLeitura(){
 		var frase = $('#frase').val();
 		frase = removerAcentos(frase);
-		frase = frase.replace(/ /g,'*');
+		frase = frase.replace(/ /g,'*').toLowerCase();
 		if(frase != ''){
 			var resultado = buscaSubPalavra(frase, frase.length);
 			if(resultado){

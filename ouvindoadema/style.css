@@ -14,3 +14,7 @@ table{border: solid 1px;}
 
 #wordlist p{display: inline;}
 
+.palavra-encontrada{
+	border: solid 1px #ccc;
+    background-color: #ccc;
+}

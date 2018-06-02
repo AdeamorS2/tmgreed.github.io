@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adeamor (ღ˘⌣˘ღ)</title>
+	
+	<meta charset="UTF-8">
+	
+	<!-- JQUERY -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- SCRIPT DE ENVIO DA PERGUNTA -->
+	<script src="script.js"></script>
+	
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- CSS PERSONALIZADO -->
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<div style="margin-left: 20%; width: 50%; margin-top: 100px;">
+		<div>
+			<h1>Olá</h1>
+			<div style="width: 100%; margin-top: 20px;">
+				
+				
+			</div>
+		</div>
+
+		<table class="table table-bordered tabela-perguntas">
+			<thead>
+				<tr>
+					<th colspan="2" class="titulo-tabela" style="border: none;"><label>O adeamor certamente diria... </label></th>
+				</tr>
+				<tr>
+					<th style="border: none;"><textarea class="area-pergunta" id="frase"></textarea></th>
+				</tr>
+			</thead>
+		</table>
+		
+		<table class="table table-bordered tabela-perguntas">
+			<thead>
+				<tr style="border-bottom: none;">
+					<th colspan="2" class="titulo-tabela" style="border-bottom: none;">
+						<div style="float: left;">Pesquise por uma palavra:
+							<input type="text" style="margin-left: 10px;width: 150px;" name="palavra-pesquisa" id="palavra-pesquisa"/>
+						</div>
+						<div>
+							<button class="botao-perguntas btn btn-primary" type="button" id="adicionar">Adicionar</button>
+						</div>
+					</th>
+				</tr>
+				<tr>
+					<th colspan="2" class="titulo-tabela" style="border: none;">Lista de palavras:</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><div id="wordlist"></div></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<table class="table table-bordered tabela-perguntas">
+			<thead>
+				<th colspan="2" class="titulo-tabela">Splits/Matches</th>
+			</thead>
+			<tbody id="lista"></tbody>
+		</table>
+		
+	</div>
+</body>
+</html>

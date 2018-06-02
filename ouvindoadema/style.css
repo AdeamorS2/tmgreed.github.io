@@ -1,0 +1,16 @@
+table{border: solid 1px;}
+
+.tabela-perguntas{border-top: none!important;border-left: none!important;border-right: none!important;margin-top: 10px!important;}
+
+.botao-perguntas{float: right;}
+
+.titulo-tabela{border-left: none!important;border-right: none!important;}
+
+.area-pergunta{width: 100%; resize: none;}
+
+.audio{float: right;}
+
+.silaba-tabela{padding: 6px 5px;display: inline-block;}
+
+#wordlist p{display: inline;}
+

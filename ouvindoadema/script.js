@@ -13,6 +13,7 @@ $(document).ready(function(){
 			removeTagWordlist('nao-listar');
 			removeTagWordlist('especiais');
 			removeTagWordlist('palavras');
+			removeTagWordlist('palavras2');
 			var indicePalavras = 0;
 			var lines = todasPalavras.split(";");
 			for (var i = 0, len = lines.length; i < len; i++){
@@ -47,6 +48,7 @@ $(document).ready(function(){
 				}
 				break;
 			case 'palavras':
+			case 'palavras2':
 				$('#wordlist').append('<br><br>');
 				for (var i = 0, len = lines.length; i < len; i++){
 					if((i+1)<len){
@@ -75,7 +77,7 @@ $(document).ready(function(){
 	
 	$(document).on('click','#adicionar', function(){
 		var palavraPesquisa = $('#palavra-pesquisa').val();
-		palavraPesquisa = removerAcentos(palavraPesquisa).toLowerCase();
+		palavraPesquisa = removerAcentos(palavraPesquisa).replace(/ /g,'-').toLowerCase();
 		if(palavras.indexOf(palavraPesquisa)>-1){
 			var novoConteudo = $('#frase').val()+' '+palavraPesquisa;
 			$('#frase').val(novoConteudo);
@@ -85,7 +87,7 @@ $(document).ready(function(){
 	
 	function buscaPalavra(){
 		var palavra = $('#palavra-pesquisa').val();
-		palavra = removerAcentos(palavra).toLowerCase();
+		palavra = removerAcentos(palavra).replace(/ /g,'-').toLowerCase();
 		if(caracteresEspeciais.indexOf(palavra)==-1){
 			if(palavra != ''){
 				$('#wordlist p').removeClass('palavra-encontrada');
@@ -107,7 +109,7 @@ $(document).ready(function(){
 	function realizaLeitura(){
 		var frase = $('#frase').val();
 		frase = removerAcentos(frase);
-		frase = frase.replace(/ /g,'*').toLowerCase();
+		frase = frase.replace(/ /g,'-').toLowerCase();
 		if(frase != ''){
 			var resultado = buscaSubPalavra(frase, frase.length);
 			if(resultado){
@@ -170,7 +172,7 @@ $(document).ready(function(){
 		switch(silaba){
 			case ',':
 			case '.':
-			case '*':
+			case '-':
 				silaba = 'espaco';
 				break;
 			case 'thais':

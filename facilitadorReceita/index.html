@@ -13,26 +13,193 @@
         <script src="js/script.js" type="text/javascript"></script>
 		
 		<style>
+			.cor-fonte-padrao {color: #984a04;}
+			.elemento-par-inf{display: inline-block;width: 48%;}
 			body{background-color: #947661;}
 			.p-5.jumbotron{border-radius: 10px;background-color: #F8EEE7;}
-			button{ background-color: #82634e!important; border-color: #82634e!important;}
+			.border-top-tabela{border-top: dotted 1px #CCC;}
+			.table-lista-atividades{background-color: #FFF;border: 1px solid #ced4da;border-radius: .25rem;}
+			.table-lista-atividades td {padding: 6px 10px;}
+			.table-lista-atividades th { text-align: center; border-bottom: solid 1px #CCC; padding: 6px 10px;}
+			/*button{ background-color: #82634e!important; border-color: #82634e!important;}*/
 		</style>
     </head>
     <body>
-		<div class="container-fluid pt-5 w-50">
+		<div class="container-fluid pt-5" style="width: 90%;">
 			<div class="p-5 jumbotron">
-				<form class="">
-					<h3 class="text-lg-center" style="color: #984a04;">Pesquisa de Empresa</h3>
-					<div class="form-group pt-5">
-						<label style="width: 100%;color: #984a04;">Digite o CNPJ</label>
-						<input type="text" class="col-9 form-control" id="cnpj" placeholder="76484013000145" maxlength="14" style="float: left; display: inline-block;">
-						<button onclick="return false;" id="buscar" class="ml-2 btn btn-primary">Buscar</button>
+				<div id="passo-1">
+					<form class="">
+						<h3 class="text-lg-center cor-fonte-padrao">Pesquisa de Empresa</h3>
+						<div class="form-group pt-5">
+							<label class="cor-fonte-padrao">Digite o CNPJ</label>
+							<input type="text" class="form-control mb-2" id="cnpj_entrada" value="76484013000145" maxlength="14" style="float: left; display: inline-block;">
+							<small id="emailHelp" class="form-text text-muted cor-fonte-padrao">Sem pontuação, por favor!</small>
+							<button onclick="return false;" id="buscar" class="float-right btn btn-success">Buscar</button>
+						</div>
 						
-						<small id="emailHelp" class="form-text text-muted" style="color: #984a04!important">Sem pontuação, por favor!</small>
-					</div>
-					
-				</form>
+					</form>
+				</div>
+				
+				<div id="passo-2" style="display: none;">
+					<form class="">
+						<h3 class="text-lg-center cor-fonte-padrao">Empresa Encontrada!</h3>
+						<div class="form-group pt-5" style="margin-bottom: 0;">
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Nome:</b></label>
+								<label class="cor-fonte-padrao" id="nome"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Situação:</b></label>
+								<label class="cor-fonte-padrao" id="situacao"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Fantasia:</b></label>
+								<label class="cor-fonte-padrao" id="fantasia"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Data Situação:</b></label>
+								<label class="cor-fonte-padrao" id="data_situacao"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>CNPJ:</b></label>
+								<label class="cor-fonte-padrao" id="cnpj"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Última Atualização:</b></label>
+								<label class="cor-fonte-padrao" id="ultima_atualizacao"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Porte:</b></label>
+								<label class="cor-fonte-padrao" id="porte"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Abertura:</b></label>
+								<label class="cor-fonte-padrao" id="abertura"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Natureza Jurídica:</b></label>
+								<label class="cor-fonte-padrao" id="natureza_juridica"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Status:</b></label>
+								<label class="cor-fonte-padrao" id="status"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Tipo:</b></label>
+								<label class="cor-fonte-padrao" id="tipo"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>EFR:</b></label>
+								<label class="cor-fonte-padrao" id="efr"></label>
+							</div>
+							
+							<div class="elemento-par-inf pt-3">
+								<label class="cor-fonte-padrao"><b>Logradouro:</b></label>
+								<label class="cor-fonte-padrao" id="logradouro"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Numero:</b></label>
+								<label class="cor-fonte-padrao" id="numero"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Complemento:</b></label>
+								<label class="cor-fonte-padrao" id="complemento"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Bairro:</b></label>
+								<label class="cor-fonte-padrao" id="bairro"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Município:</b></label>
+								<label class="cor-fonte-padrao" id="municipio"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>UF:</b></label>
+								<label class="cor-fonte-padrao" id="uf"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>CEP:</b></label>
+								<label class="cor-fonte-padrao" id="cep"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Telefone:</b></label>
+								<label class="cor-fonte-padrao" id="telefone"></label>
+							</div>
+							
+							<div class="elemento-par-inf pt-3">
+								<label class="cor-fonte-padrao"><b>E-mail:</b></label>
+								<label class="cor-fonte-padrao" id="email"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Capital Social:</b></label>
+								<label class="cor-fonte-padrao" id="capital_social"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Situação Especial:</b></label>
+								<label class="cor-fonte-padrao" id="situacao_especial"></label>
+							</div>
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Motivo Situação:</b></label>
+								<label class="cor-fonte-padrao" id="motivo_situacao"></label>
+							</div>
+							
+							<div class="elemento-par-inf">
+								<label class="cor-fonte-padrao"><b>Data Situação:</b></label>
+								<label class="cor-fonte-padrao" id="data_situacao_especial"></label>
+							</div>
+							
+							
+							
+							<label class="cor-fonte-padrao pt-4" style="width: 100%;">Lista de Atividades</label>
+							<table class="table-lista-atividades w-100">
+								<thead>
+									<th align="center">Número</th>
+									<th style="text-align: left;">Atividade</th>
+									<th align="center">Código</th>
+								</thead>
+								<tbody id="lista-atividades-inf"></tbody>
+							</table>
+							
+							<label class="cor-fonte-padrao pt-4" style="width: 100%;">Selecione a Atividade Principal</label>
+							<div id="lista-atividades" class="pb-4"></div>
+							<button onclick="return false;" id="voltar" class="btn btn-danger">Voltar</button>
+							<button onclick="return false;" id="prosseguir" class="float-right btn btn-success">Prosseguir</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>    
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

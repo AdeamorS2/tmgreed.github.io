@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <meta charset="utf-8">
         <title>FacilitadorReceita</title>
         <meta name="description" content="Teste">
-        <link rel="icon" href="image/receita.jpeg" type="image/x-icon">
+        <link rel="icon" href="image/receita.jpg" type="image/x-icon">
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
@@ -13,8 +12,28 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
         <script src="js/script.js" type="text/javascript"></script>
+		
+		<style>
+			body{background-color: #947661;}
+			.p-5.jumbotron{border-radius: 10px;background-color: #F8EEE7;}
+			button{ background-color: #984a04!important; border-color: #984a04!important;}
+		</style>
     </head>
     <body>
-        
-    </body>    
+		<div class="container-fluid pt-5 w-50">
+			<div class="p-5 jumbotron">
+				<form class="">
+					<h3 class="text-lg-center" style="color: #984a04;">Pesquisa de Empresa</h3>
+					<div class="form-group pt-5">
+						<label style="width: 100%;color: #984a04;">Digite o CNPJ</label>
+						<input type="text" class="col-9 form-control" id="cnpj" placeholder="76484013000145" maxlength="14" style="float: left; display: inline-block;">
+						<button onclick="return false;" id="buscar" class="ml-2 btn btn-primary">Buscar</button>
+						
+						<small id="emailHelp" class="form-text text-muted" style="color: #984a04!important">Sem pontuação, por favor!</small>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</body>    
 </html>

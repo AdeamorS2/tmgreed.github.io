@@ -4,7 +4,8 @@ $(document).ready(function(){
 	});
 	
 	$('#prosseguir').on('click', function(){
-		alert('puff! *Imprimindo*');
+		$('#atividade_selecionada_impressao').text($('#atividade_selecionada option:selected').text());
+		window.print();
 	});
 	
 	$('#cnpj_entrada').on('blur', function(){
@@ -26,7 +27,8 @@ $(document).ready(function(){
 			}, success : function(json){
 				var html = html_inf = '';
 				
-				html += '<select class="form-control">';
+				//############################ SELECT ATIVIDADES
+				html += '<select class="form-control" id="atividade_selecionada">';
 				html += '<option value="0">'+json.atividade_principal[0].text+'</option>';
 				if(json.atividades_secundarias[0].code!='00.00-0-00'){
 					for(var i=1; i<=json.atividades_secundarias.length; i++){
@@ -36,6 +38,7 @@ $(document).ready(function(){
 				html += '</select>';
 				$('#lista-atividades').html(html);
 				
+				//############################ LISTA ATIVIDADES
 				html_inf += '<tr>';
 				html_inf += '	<td align="center">1</td>';
 				html_inf += '	<td>'+json.atividade_principal[0].text+'</td>';
@@ -52,6 +55,7 @@ $(document).ready(function(){
 				}
 				$('#lista-atividades-inf').html(html_inf);
 				
+				//############################ INFORMAÇÕES NA TELA
 				limpaDadosEmpresa();
 				$('#nome').text(json.nome);
 				$('#situacao').text(json.situacao);
@@ -79,6 +83,25 @@ $(document).ready(function(){
 				$('#data_situacao_especial').text(json.data_situacao_especial);
 				$('#capital_social').text(json.capital_social);
 				
+				//############################ IMPRESSÃO
+				var html_imp = '';
+				html_imp += '<tr>';
+				html_imp += '	<td>'+json.atividade_principal[0].text+'</td>';
+				html_imp += '</tr>';
+				if(json.atividades_secundarias[0].code!='00.00-0-00'){
+					for(var i=1; i<=json.atividades_secundarias.length; i++){
+						html_imp += '<tr>';
+						html_imp += '	<td>'+json.atividades_secundarias[i-1].text+'</td>';
+						html_imp += '</tr>';
+					}
+				}
+				$('#lista_atividades_impressao').html(html_imp);
+				$('#email_impressao').html(json.email);
+				$('#data_impressao').html(getData());
+				$('#local_impressao').html(json.municipio);
+				var identificacao = json.nome+' - '+json.cnpj+' - '+json.logradouro+' - '+json.cep+' - '+json.municipio+' - '+json.uf;
+				$('#identificacao').html(identificacao);
+				
 				$('#passo-1').hide();
 				$('#passo-2').show();
 				console.log(json);
@@ -86,6 +109,13 @@ $(document).ready(function(){
 				alert('Ocorreu um erro, tente novamente!');
 			}
 		})
+	}
+	
+	function getData(){
+		var d = new Date();
+		var month = d.getMonth()+1;
+		var day = d.getDate();
+		return ((day<10?'0':'')+day + '/' + (month<10?'0':'')+month + '/' + d.getFullYear())
 	}
 	
 	$('#voltar').on('click', function(){

@@ -21,18 +21,32 @@
 			.table-lista-atividades{background-color: #FFF;border: 1px solid #ced4da;border-radius: .25rem;}
 			.table-lista-atividades td {padding: 6px 10px;}
 			.table-lista-atividades th { text-align: center; border-bottom: solid 1px #CCC; padding: 6px 10px;}
-			/*button{ background-color: #82634e!important; border-color: #82634e!important;}*/
+			
+			.impressao table{font-size: 20px; margin-left: 20px;}
+			.impressao .identificacao{text-align: center; font-weight: bold; font-size: 20px;}
+			.impressao h1{padding-bottom: 50px;}
+			.footer { position: fixed; bottom: 0; padding-bottom: 50px; width: 90%;}
+			.footer label{margin-right: 20px;}
+			.footer .centro{width: 1000px;margin-left: auto; margin-right: auto;}
+			.impressao label{font-size: 20px;}
+			
+			@media print{    
+				.nao-impressao, .nao-impressao * {
+					display: none !important;
+				}
+				.impressao{display: block!important;}
+			}
 		</style>
     </head>
     <body>
-		<div class="container-fluid pt-5" style="width: 90%;">
+		<div class="container-fluid pt-5 nao-impressao" style="width: 90%; ">
 			<div class="p-5 jumbotron">
 				<div id="passo-1">
 					<form class="">
 						<h3 class="text-lg-center cor-fonte-padrao">Pesquisa de Empresa</h3>
 						<div class="form-group pt-5">
 							<label class="cor-fonte-padrao">Digite o CNPJ</label>
-							<input type="text" class="form-control mb-2" id="cnpj_entrada" value="76484013000145" maxlength="14" style="float: left; display: inline-block;">
+							<input type="text" class="form-control mb-2" id="cnpj_entrada" value="27865757000102" maxlength="14" style="float: left; display: inline-block;">
 							<small id="emailHelp" class="form-text text-muted cor-fonte-padrao">Sem pontuação, por favor!</small>
 							<button onclick="return false;" id="buscar" class="float-right btn btn-success">Buscar</button>
 						</div>
@@ -179,7 +193,45 @@
 				</div>
 			</div>
 		</div>
-	</body>    
+		<div class="impressao" style="display: none;">
+			<div>
+				<div style="padding: 5%;">
+					<h1 style="text-align: center;">DECLARAÇÃO</h1>
+					
+					<div style="clear: both;"></div>
+					<div class="identificacao" id="identificacao">IDENTIFICACAO</div>
+			
+					<div style="clear: both;"></div>
+					<label style="margin-top: 30px;">Lista de Atividades:</label>
+					<table style="margin-top: 15px; width: 100%;">
+						<tbody id="lista_atividades_impressao"></tbody>
+					</table>
+					
+					<div style="clear: both;"></div>
+					<label style="text-indent: 50px; margin-top: 40px;">Me comprometo que as compras realizadas na Votorantim S.A. serão usadas exclusivamente para atividade de <b><label id="atividade_selecionada_impressao" style="display: inline;">TESTE</label></b>.
+					</label>
+					
+					<div style="clear: both;"></div>
+					<label id="email_impressao" style="margin-top: 30px;">TESTE</label>
+					
+					<div style="clear: both;"></div>
+					<label style="margin-top: 20px;">
+						<label id="data_impressao">TESTE</label>, <label id="local_impressao">TESTE</label>
+					</label>
+					
+					<div class="footer">
+						<div class="centro">
+							<div style="clear: both;"></div>
+							<label>Nome: _____________________________</label>
+							<label>CPF: ________________________</label>
+							<label>Assinatura: ____________________</label>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</body>   
 </html>
 
 

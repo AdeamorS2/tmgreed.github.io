@@ -4,8 +4,42 @@ $(document).ready(function(){
 	});
 	
 	$('#prosseguir').on('click', function(){
+		if($('#input_responsavel_footer').val()!=''){
+			$('#responsavel_footer').text('Responsável legal: '+$('#input_responsavel_footer').val());
+		}else{
+			$('#responsavel_footer').text('Responsável legal: _____________________');
+		}
+		if($('#input_cpf_footer').val()!=''){
+			$('#cpf_footer').text('CPF: '+$('#input_cpf_footer').val());
+		}else{
+			$('#cpf_footer').text('CPF: _____________________');
+		}
 		$('#atividade_selecionada_impressao').text($('#atividade_selecionada option:selected').text());
-		window.print();
+		
+		if($('#atividade_selecionada').val()==-1){
+			alert("É obrigatório selecionar uma atividade principal!");
+			return false;
+		}
+		if($('#input_cpf_footer').val()=='' || $('#input_responsavel_footer').val()==''){
+			var confirma = false;
+			if($('#input_cpf_footer').val()=='' && $('#input_responsavel_footer').val()==''){
+				confirma = confirm("Atenção! O responsável legal e o CPF não foram preenchidos, estas informações estarão aguardando preenchimento manual no documento. Deseja continuar?");
+			}else if($('#input_cpf_footer').val()==''){
+				confirma = confirm("Atenção! O CPF não foi preenchido, esta informação estará aguardando preenchimento manual no documento. Deseja continuar?");
+			}else{
+				confirma = confirm("Atenção! O responsável legal não foi preenchido, esta informação estará aguardando preenchimento manual no documento. Deseja continuar?");
+			}
+			if(confirma){
+				print();
+			} else {
+				return false;
+			}
+		}else{
+			print();
+		}
+		function print(){
+			window.print();
+		}
 	});
 	
 	$('#cnpj_entrada').on('blur', function(){
@@ -29,6 +63,7 @@ $(document).ready(function(){
 				
 				//############################ SELECT ATIVIDADES
 				html += '<select class="form-control" id="atividade_selecionada">';
+				html += '<option value="-1">&lt;selecionar atividade principal&gt;</option>';
 				html += '<option value="0">'+json.atividade_principal[0].text+'</option>';
 				if(json.atividades_secundarias[0].code!='00.00-0-00'){
 					for(var i=1; i<=json.atividades_secundarias.length; i++){
@@ -85,21 +120,19 @@ $(document).ready(function(){
 				
 				//############################ IMPRESSÃO
 				var html_imp = '';
-				html_imp += '<tr>';
-				html_imp += '	<td>'+json.atividade_principal[0].text+'</td>';
-				html_imp += '</tr>';
+				
+				html_imp += '<li>CNAE 1 - '+json.atividade_principal[0].text+'</li>';
+				
 				if(json.atividades_secundarias[0].code!='00.00-0-00'){
 					for(var i=1; i<=json.atividades_secundarias.length; i++){
-						html_imp += '<tr>';
-						html_imp += '	<td>'+json.atividades_secundarias[i-1].text+'</td>';
-						html_imp += '</tr>';
+						html_imp += '	<li>CNAE '+(i+1)+' - '+json.atividades_secundarias[i-1].text+'</li>';
 					}
 				}
 				$('#lista_atividades_impressao').html(html_imp);
-				$('#email_impressao').html(json.email);
-				$('#data_impressao').html(getData());
-				$('#local_impressao').html(json.municipio);
-				var identificacao = json.nome+' - '+json.cnpj+' - '+json.logradouro+' - '+json.cep+' - '+json.municipio+' - '+json.uf;
+				$('#email_impressao').html("E-mail: "+json.email);
+				$('#data_impressao').html(json.municipio+", "+getData());
+				
+				var identificacao = '<b>"'+json.nome+'"</b>, inscrito no CNPJ nº '+json.cnpj+", estabelecido à Rua "+json.logradouro+", CEP: "+json.cep+", "+json.municipio+"/"+json.uf+", portador dos CNAES abaixo listados:"
 				$('#identificacao').html(identificacao);
 				
 				$('#passo-1').hide();
@@ -149,6 +182,9 @@ $(document).ready(function(){
 		$('#motivo_situacao').text('');
 		$('#data_situacao_especial').text('');
 		$('#capital_social').text('');
+		
+		$('#input_cpf_footer').val('');
+		$('#input_responsavel_footer').val('');
 	}
 	/*
 	function teste1(){

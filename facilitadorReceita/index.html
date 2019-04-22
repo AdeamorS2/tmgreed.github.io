@@ -13,24 +13,28 @@
         <script src="js/script.js" type="text/javascript"></script>
 		
 		<style>
-			.cor-fonte-padrao {color: #984a04;}
+			.cor-fonte-padrao {color: #424242;}
 			.elemento-par-inf{display: inline-block;width: 48%;}
-			body{background-color: #947661;}
-			.p-5.jumbotron{border-radius: 10px;background-color: #F8EEE7;}
-			.border-top-tabela{border-top: dotted 1px #CCC;}
-			.table-lista-atividades{background-color: #FFF;border: 1px solid #ced4da;border-radius: .25rem;}
+			body{background-color: #002c5a;}
+			.p-5.jumbotron{border-radius: 10px;background-color: #96caff;}
+			.border-top-tabela{border-top: dotted 1px #8e9194;}
+			.table-lista-atividades{background-color: #bdf;border: 1px solid #8e9194;border-radius: .25rem;}
 			.table-lista-atividades td {padding: 6px 10px;}
-			.table-lista-atividades th { text-align: center; border-bottom: solid 1px #CCC; padding: 6px 10px;}
+			.table-lista-atividades th { text-align: center; border-bottom: solid 1px #8e9194; padding: 6px 10px;}
 			
 			.impressao table{font-size: 20px; margin-left: 20px;}
-			.impressao .identificacao{text-align: center; font-weight: bold; font-size: 20px;}
-			.impressao h1{padding-bottom: 90px;}
-			.footer { position: fixed; bottom: 0; padding-bottom: 50px; width: 90%;}
+			.impressao .identificacao{text-align: left; font-size: 17px;}
+			.impressao h1{padding-bottom: 15px;}
+			.footer { position: fixed; bottom: 0; padding-bottom: 50px; width: 72%;}
 			.footer label{margin-right: 20px;}
-			.footer .centro{width: 1000px;margin-left: auto; margin-right: auto;}
-			.impressao label{font-size: 20px;}
+			.footer .centro{margin-left: auto; margin-right: auto;}
+			.footer .centro label{width: 100%; text-align: center;}
+			.impressao label{ text-align: justify; font-size: 17px;line-height: 35px;}
+			.impressao { padding-left: 100px;  padding-right: 100px; font-family: Calibri!important;}
+			.impressao #lista_atividades_impressao {    font-weight: bold; font-family: Arial!important; font-size: 12px;}
+			.impressao li {margin-top: 20px;}
 			
-			@media print{    
+			@media print{
 				.nao-impressao, .nao-impressao * {
 					display: none !important;
 				}
@@ -184,8 +188,15 @@
 								<tbody id="lista-atividades-inf"></tbody>
 							</table>
 							
-							<label class="cor-fonte-padrao pt-4" style="width: 100%;">Selecione a Atividade Principal</label>
-							<div id="lista-atividades" class="pb-4"></div>
+							<label class="cor-fonte-padrao pt-2" style="width: 100%;">Selecione a Atividade Principal</label>
+							<div id="lista-atividades" title="Atividade principal a ser utilizada para este contrato"></div>
+							
+							<label class="cor-fonte-padrao pt-2" style="width: 100%;">Responsável legal:</label>
+							<input class="form-control" type="text" id="input_responsavel_footer" title="Nome da pessoa que está assinando"/>
+							
+							<label class="cor-fonte-padrao pt-2" style="width: 100%;">CPF:</label>
+							<input class="form-control mb-4" type="text" maxlength="14" id="input_cpf_footer" title="CPF da pessoa que está assinando"/>
+							
 							<button onclick="return false;" id="voltar" class="btn btn-danger">Voltar</button>
 							<button onclick="return false;" id="prosseguir" class="float-right btn btn-success">Prosseguir</button>
 						</div>
@@ -202,28 +213,40 @@
 					<div class="identificacao" id="identificacao">IDENTIFICACAO</div>
 			
 					<div style="clear: both;"></div>
-					<label style="margin-top: 30px;">Lista de Atividades:</label>
-					<table style="margin-top: 15px; width: 100%;">
-						<tbody id="lista_atividades_impressao"></tbody>
-					</table>
+					
+					<ul style="margin-left: 15px; margin-top: 35px; width: 100%;" id="lista_atividades_impressao"></ul>
+					
 					
 					<div style="clear: both;"></div>
-					<label style="text-indent: 50px; margin-top: 40px;">Me comprometo que as compras realizadas na Votorantim S.A. serão usadas exclusivamente para a atividade de <b><label id="atividade_selecionada_impressao" style="display: inline;">TESTE</label></b>.
-					</label>
+					<label style="/*text-indent: 50px;*/ margin-top: 10px;">Atesta para todos os fins de direito, que as compras de CIMENTO E AGREGADOS efetuadas da Votorantim Cimentos S.A., Votorantim Cimentos N/NE S.A. ou de qualquer outra empresa do Grupo Votorantim serão integralmente destinadas para desempenho da atividade descrita no CNAE <b><label id="atividade_selecionada_impressao" style="display: inline;">TESTE</label></b>.</label>
 					
 					<div style="clear: both;"></div>
-					<label id="email_impressao" style="margin-top: 30px;">TESTE</label>
+					<label style="margin-top: 20px;">O Declarante ainda se compromete em restituir à Votorantim Cimentos S.A., Votorantim Cimentos N/NE S.A. ou qualquer outra empresa do Grupo Votorantim toda e qualquer quantia desembolsada a título de (i) tributo, (ii) multa, (iii) juros e demais consectários legais, por ocasião de destinação diversa que eventualmente venha ser dada à compra realizada.</label>
 					
 					<div style="clear: both;"></div>
-					<label style="margin-top: 20px;">
-						<label id="data_impressao">TESTE</label>, <label id="local_impressao">TESTE</label>
-					</label>
+					<label style="margin-top: 20px;">A presente declaração tem validade por 1 ano, contados a partir da data de sua assinatura.</label>
+					
+					<div style="clear: both;"></div>
+					<label style="margin-top: 20px;">Caso o Declarante, neste intervalo de tempo, realize compras com destinação diversa da atestada acima, o mesmo, obrigatoriamente, deverá informar previamente à Votorantim Cimentos S.A., Votorantim Cimentos N/NE S.A. ou qualquer outra empresa do Grupo Votorantim, para que a carga tributária da operação seja ajustada de acordo com a legislação. </label>
+					<div style="clear: both;"></div>
+					<label style="color :#F00!important;">**Importante:</label>
+					<label>Prezado cliente informar o e-mail para recebimento de comunicados próximo da data de renovação da documentação solicitada acima.</label>
+					
+					<div style="clear: both;"></div>
+					
+					<label id="email_impressao">TESTE</label>
+					
+					<div style="clear: both;"></div>
+					<label style="margin-top: 50px; text-align: center; width: 100%;" id="data_impressao">TESTE</label>
+					
 					
 					<div class="footer">
 						<div class="centro">
 							<div style="clear: both;"></div>
-							<label>Nome: _____________________________</label>
-							<label>CPF: ________________________</label>
+							<label id="responsavel_footer">responsavel legal:</label>
+							<div style="clear: both;"></div>
+							<label id="cpf_footer">CPF: </label>
+							<div style="clear: both;"></div>
 							<label>Assinatura: ____________________</label>
 						</div>
 					</div>

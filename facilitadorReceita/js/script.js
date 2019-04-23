@@ -61,13 +61,20 @@ $(document).ready(function(){
 			}, success : function(json){
 				var html = html_inf = '';
 				
+				if(json.situacao!="ATIVA"){
+					alert("O CNPJ informado encontra-se com situação baixada/inapta. Favor entrar em contato com o órgão responsável para regularização");
+					$('#prosseguir').hide();
+				}else{
+					$('#prosseguir').show();
+				}
+				
 				//############################ SELECT ATIVIDADES
 				html += '<select class="form-control" id="atividade_selecionada">';
 				html += '<option value="-1">&lt;selecionar atividade principal&gt;</option>';
-				html += '<option value="0">'+json.atividade_principal[0].text+'</option>';
+				html += '<option value="0">'+json.atividade_principal[0].code+' - '+json.atividade_principal[0].text+'</option>';
 				if(json.atividades_secundarias[0].code!='00.00-0-00'){
 					for(var i=1; i<=json.atividades_secundarias.length; i++){
-						html += '<option value="'+i+'">'+json.atividades_secundarias[i-1].text+'</option>';
+						html += '<option value="'+i+'">'+json.atividades_secundarias[i-1].code+' - '+json.atividades_secundarias[i-1].text+'</option>';
 					}
 				}
 				html += '</select>';
@@ -76,15 +83,15 @@ $(document).ready(function(){
 				//############################ LISTA ATIVIDADES
 				html_inf += '<tr>';
 				html_inf += '	<td align="center">1</td>';
-				html_inf += '	<td>'+json.atividade_principal[0].text+'</td>';
 				html_inf += '	<td align="center">'+json.atividade_principal[0].code+'</td>';
+				html_inf += '	<td>'+json.atividade_principal[0].text+'</td>';
 				html_inf += '</tr>';
 				if(json.atividades_secundarias[0].code!='00.00-0-00'){
 					for(var i=1; i<=json.atividades_secundarias.length; i++){
 						html_inf += '<tr>';
 						html_inf += '	<td class="border-top-tabela" align="center">'+(i+1)+'</td>';
-						html_inf += '	<td class="border-top-tabela">'+json.atividades_secundarias[i-1].text+'</td>';
 						html_inf += '	<td class="border-top-tabela" align="center">'+json.atividades_secundarias[i-1].code+'</td>';
+						html_inf += '	<td class="border-top-tabela">'+json.atividades_secundarias[i-1].text+'</td>';
 						html_inf += '</tr>';
 					}
 				}

@@ -15,12 +15,14 @@
 		<style>
 			.cor-fonte-padrao {color: #424242;}
 			.elemento-par-inf{display: inline-block;width: 48%;}
-			body{background-color: #002c5a;}
-			.p-5.jumbotron{border-radius: 10px;background-color: #96caff;}
-			.border-top-tabela{border-top: dotted 1px #8e9194;}
-			.table-lista-atividades{background-color: #bdf;border: 1px solid #8e9194;border-radius: .25rem;}
+			body{background-color: #354880;}
+			.p-5.jumbotron{border-radius: 10px;background-color: #fff;}
+			.border-top-tabela{border-top: dotted 1px #d4d4d4;}
+			.table-lista-atividades{ border: 1px solid #d4d4d4;border-radius: .25rem;}
 			.table-lista-atividades td {padding: 6px 10px;}
-			.table-lista-atividades th { text-align: center; border-bottom: solid 1px #8e9194; padding: 6px 10px;}
+			.table-lista-atividades th { text-align: center; border-bottom: solid 1px #d4d4d4; padding: 6px 10px;}
+			
+			input, select, .table-lista-atividades{background-color: #f5f5f5!important;}
 			
 			.impressao table{font-size: 20px; margin-left: 20px;}
 			.impressao .identificacao{text-align: left; font-size: 17px;}
@@ -51,7 +53,7 @@
 						<div class="form-group pt-5">
 							<label class="cor-fonte-padrao">Digite o CNPJ</label>
 							<input type="text" class="form-control mb-2" id="cnpj_entrada" value="27865757000102" maxlength="14" style="float: left; display: inline-block;">
-							<small id="emailHelp" class="form-text text-muted cor-fonte-padrao">Sem pontuação, por favor!</small>
+							<small id="emailHelp" class="form-text text-muted cor-fonte-padrao">Apenas números</small>
 							<button onclick="return false;" id="buscar" class="float-right btn btn-success">Buscar</button>
 						</div>
 						
@@ -181,9 +183,9 @@
 							<label class="cor-fonte-padrao pt-4" style="width: 100%;">Lista de Atividades</label>
 							<table class="table-lista-atividades w-100">
 								<thead>
-									<th align="center">Número</th>
-									<th style="text-align: left;">Atividade</th>
+									<th align="center">CNAE</th>
 									<th align="center">Código</th>
+									<th style="text-align: left;">Atividade</th>
 								</thead>
 								<tbody id="lista-atividades-inf"></tbody>
 							</table>

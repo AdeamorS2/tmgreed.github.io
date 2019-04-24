@@ -27,20 +27,24 @@
 			.impressao table{font-size: 20px; margin-left: 20px;}
 			.impressao .identificacao{text-align: left; font-size: 17px;}
 			.impressao h1{padding-bottom: 15px;}
+
 			.footer { position: fixed; bottom: 0; padding-bottom: 50px; width: 72%;}
 			.footer label{margin-right: 20px;}
 			.footer .centro{margin-left: auto; margin-right: auto;}
 			.footer .centro label{width: 100%; text-align: center;}
-			.impressao label{ text-align: justify; font-size: 17px;line-height: 35px;}
+			.impressao label{ text-align: justify; font-size: 20px;line-height: 35px;}
 			.impressao { padding-left: 100px;  padding-right: 100px; font-family: Calibri!important;}
-			.impressao #lista_atividades_impressao {    font-weight: bold; font-family: Arial!important; font-size: 12px;}
+			.impressao #lista_atividades_impressao {    font-weight: bold; font-family: Arial!important; font-size: 16px;}
 			.impressao li {margin-top: 20px;}
+			.impressao{ page-break-inside: avoid; page-break-before: always; }
 			
 			@media print{
 				.nao-impressao, .nao-impressao * {
 					display: none !important;
 				}
-				.impressao{display: block!important;}
+				.impressao{
+					display: block!important;
+				}
 			}
 		</style>
     </head>

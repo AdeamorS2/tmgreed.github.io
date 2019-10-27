@@ -1,10 +1,15 @@
 $(document).ready(function(){
+	//#0000B8
+
 	$('#buscar').on('click', function(){
 		busca();
 	});
-	
-	alert('teste');
 
+	$('#voltar').on('click', function(){
+		$('#passo-1').show();
+		$('#passo-2').hide();
+	});
+	
 	$('#prosseguir').on('click', function(){
 		if($('#input_responsavel_footer').val()!=''){
 			$('#responsavel_footer').text('Responsável legal: '+$('#input_responsavel_footer').val());
@@ -22,6 +27,7 @@ $(document).ready(function(){
 			alert("É obrigatório selecionar uma atividade principal!");
 			return false;
 		}
+
 		if($('#input_cpf_footer').val()=='' || $('#input_responsavel_footer').val()==''){
 			var confirma = false;
 			if($('#input_cpf_footer').val()=='' && $('#input_responsavel_footer').val()==''){
@@ -43,6 +49,23 @@ $(document).ready(function(){
 			window.print();
 		}
 	});
+
+	$(document).on('change', '#atividade_selecionada', function(){
+		$('#atividade_selecionada').removeClass('input-errado');
+		if($('#atividade_selecionada').val()==-1){
+			$('.atividade-inelegivel').show();
+			$('#prosseguir').hide();
+			return;
+		}
+		if( atividadeValida($('#atividade_selecionada option:selected').attr('data-codigo').replace(/-/g, '').replace('.', '')) ){
+			$('.atividade-inelegivel').hide();
+			$('#prosseguir').show();
+		}else{
+			$('#atividade_selecionada').addClass('input-errado');
+			$('.atividade-inelegivel').show();
+			$('#prosseguir').hide();
+		}
+	});
 	
 	$('#cnpj_entrada').on('blur', function(){
 		var entrada = $(this).val();
@@ -61,80 +84,77 @@ $(document).ready(function(){
 			xhrFields: {
 				withCredentials: true
 			}, success : function(json){
+				console.log("Resultado da busca na Receita Federal", json);
+				
 				var html = html_inf = '';
 				
+				//############################ VERIFICA SITUAÇÃO DA EMPRESA
 				if(json.situacao!="ATIVA"){
 					alert("O CNPJ informado encontra-se com situação baixada/inapta. Favor entrar em contato com o órgão responsável para regularização");
-					$('#prosseguir').hide();
-				}else{
-					$('#prosseguir').show();
 				}
 				
-				//############################ SELECT ATIVIDADES
+				//############################ MONTA SELECT ATIVIDADES
+				var array_atividades = [
+					{
+						text: json.atividade_principal[0].text,
+						code: json.atividade_principal[0].code
+					}
+				];
+				if(json.atividades_secundarias[0].code!='00.00-0-00'){
+					for(var i=0; i < json.atividades_secundarias.length; i++){
+						var atividade = {
+							text: json.atividades_secundarias[i].text,
+							code: json.atividades_secundarias[i].code
+						};
+						array_atividades.push(atividade);
+					}
+				}
 				html += '<select class="form-control" id="atividade_selecionada">';
 				html += '<option value="-1">&lt;selecionar atividade principal&gt;</option>';
-				html += '<option value="0">'+json.atividade_principal[0].code+' - '+json.atividade_principal[0].text+'</option>';
-				if(json.atividades_secundarias[0].code!='00.00-0-00'){
-					for(var i=1; i<=json.atividades_secundarias.length; i++){
-						html += '<option value="'+i+'">'+json.atividades_secundarias[i-1].code+' - '+json.atividades_secundarias[i-1].text+'</option>';
-					}
+				for(var i=0; i<array_atividades.length;i++){
+					html += '<option value="'+i+'" data-codigo="'+array_atividades[i].code+'">'+array_atividades[i].code+' - '+array_atividades[i].text+'</option>';
 				}
 				html += '</select>';
 				$('#lista-atividades').html(html);
+				$('.atividade-inelegivel').hide();
+				
+				//############################ BLOQUEIA DECLARAÇÃO POR NÃO POSSUIR DUPLA CATEGORIA
+				if(possuiDuplaCategoria(array_atividades)){
+					$('.cnpj-inelegivel').hide();
+				}else{
+					$('.cnpj-inelegivel').show();
+				}
 				
 				//############################ LISTA ATIVIDADES
-				html_inf += '<tr>';
-				html_inf += '	<td align="center">1</td>';
-				html_inf += '	<td align="center">'+json.atividade_principal[0].code+'</td>';
-				html_inf += '	<td>'+json.atividade_principal[0].text+'</td>';
-				html_inf += '</tr>';
-				if(json.atividades_secundarias[0].code!='00.00-0-00'){
-					for(var i=1; i<=json.atividades_secundarias.length; i++){
-						html_inf += '<tr>';
-						html_inf += '	<td class="border-top-tabela" align="center">'+(i+1)+'</td>';
-						html_inf += '	<td class="border-top-tabela" align="center">'+json.atividades_secundarias[i-1].code+'</td>';
-						html_inf += '	<td class="border-top-tabela">'+json.atividades_secundarias[i-1].text+'</td>';
-						html_inf += '</tr>';
+				for(var i=0; i < array_atividades.length; i++){
+					if(i==0){
+						var borda = '';
+					}else{
+						var borda = 'class="border-top-tabela"';
 					}
+					html_inf += '<tr>';
+					html_inf += '	<td align="center" '+borda+'>'+(i+1)+'</td>';
+					html_inf += '	<td align="center" '+borda+'>'+array_atividades[i].code+'</td>';
+					html_inf += '	<td '+borda+'>'+array_atividades[i].text+'</td>';
+					html_inf += '</tr>';
 				}
+
 				$('#lista-atividades-inf').html(html_inf);
 				
-				//############################ INFORMAÇÕES NA TELA
-				limpaDadosEmpresa();
-				$('#nome').text(json.nome);
-				$('#situacao').text(json.situacao);
-				$('#fantasia').text(json.fantasia);
-				$('#data_situacao').text(json.data_situacao);
-				$('#cnpj').text(json.cnpj);
-				$('#ultima_atualizacao').text(json.ultima_atualizacao);
-				$('#porte').text(json.porte);
-				$('#abertura').text(json.abertura);
-				$('#natureza_juridica').text(json.natureza_juridica);
-				$('#status').text(json.status);
-				$('#tipo').text(json.tipo);
-				$('#efr').text(json.efr);
-				$('#logradouro').text(json.logradouro);
-				$('#numero').text(json.numero);
-				$('#complemento').text(json.complemento);
-				$('#bairro').text(json.bairro);
-				$('#municipio').text(json.municipio);
-				$('#uf').text(json.uf);
-				$('#cep').text(json.cep);
-				$('#telefone').text(json.telefone);
-				$('#email').text(json.email);
-				$('#situacao_especial').text(json.situacao_especial);
-				$('#motivo_situacao').text(json.motivo_situacao);
-				$('#data_situacao_especial').text(json.data_situacao_especial);
-				$('#capital_social').text(json.capital_social);
+				//############################ LIMPA INFORMAÇÕES
+				$('.texto_resultado').text('');
 				
-				//############################ IMPRESSÃO
-				var html_imp = '';
+				//############################ INSERE NOVAS INFORMAÇÕES
+				var keys = Object.keys(json);
+				for(var i=0; i<keys.length; i++){
+					$('#'+keys[i]).text(json[keys[i]]);
+				}
 				
-				html_imp += '<li>CNAE 1 - '+json.atividade_principal[0].text+'</li>';
-				
+				//############################ MONTA IMPRESSÃO
+				var html_imp = '<li>CNAE '+json.atividade_principal[0].code+' - '+json.atividade_principal[0].text+'</li>';
 				if(json.atividades_secundarias[0].code!='00.00-0-00'){
 					for(var i=1; i<=json.atividades_secundarias.length; i++){
-						html_imp += '	<li>CNAE '+(i+1)+' - '+json.atividades_secundarias[i-1].text+'</li>';
+						html_imp += '	<li>CNAE '+json.atividades_secundarias[i-1].code+' - '+json.atividades_secundarias[i-1].text+'</li>';
 					}
 				}
 				$('#lista_atividades_impressao').html(html_imp);
@@ -146,7 +166,6 @@ $(document).ready(function(){
 				
 				$('#passo-1').hide();
 				$('#passo-2').show();
-				console.log(json);
 			}, error: function(){
 				alert('Ocorreu um erro, tente novamente!');
 			}
@@ -159,110 +178,135 @@ $(document).ready(function(){
 		var day = d.getDate();
 		return ((day<10?'0':'')+day + '/' + (month<10?'0':'')+month + '/' + d.getFullYear())
 	}
-	
-	$('#voltar').on('click', function(){
-		$('#passo-1').show();
-		$('#passo-2').hide();
-	});
-	
-	function limpaDadosEmpresa(){
-		$('#nome').text('');
-		$('#situacao').text('');
-		$('#fantasia').text('');
-		$('#data_situacao').text('');
-		$('#cnpj').text('');
-		$('#ultima_atualizacao').text('');
-		$('#porte').text('');
-		$('#abertura').text('');
-		$('#natureza_juridica').text('');
-		$('#status').text('');
-		$('#tipo').text('');
-		$('#efr').text('');
-		$('#logradouro').text('');
-		$('#numero').text('');
-		$('#complemento').text('');
-		$('#bairro').text('');
-		$('#municipio').text('');
-		$('#uf').text('');
-		$('#cep').text('');
-		$('#telefone').text('');
-		$('#email').text('');
-		$('#situacao_especial').text('');
-		$('#motivo_situacao').text('');
-		$('#data_situacao_especial').text('');
-		$('#capital_social').text('');
-		
-		$('#input_cpf_footer').val('');
-		$('#input_responsavel_footer').val('');
-	}
-	/*
-	function teste1(){
-		var baseURL = 'https://www.receitaws.com.br/v1/cnpj/';
-		var cnpj = $('#cnpj').val();
-		if(cnpj!='' && cnpj.length>=14){
-			$.getJSON( baseURL+cnpj, function(data) {
-				console.log( "success" );
-			}).done(function() {
-				console.log( "second success" );
-			})
-			.fail(function() {
-				console.log( "error" );
-			})
-			.always(function() {
-				console.log( "complete" );
-			});
+
+	function possuiDuplaCategoria(array_atividades){
+		var concreteira = revenda = industria = false;
+
+		for(var i=0; i<array_atividades.length; i++){
+			var atividade = array_atividades[i].code.replace(/-/g, '').replace('.', '');
+			if(jQuery.inArray(parseInt(atividade,), array_concreteira)>-1){
+				concreteira = true;
+			}
+			if(jQuery.inArray(parseInt(atividade,), array_revenda)>-1){
+				revenda = true;
+			}
+			if(jQuery.inArray(parseInt(atividade,), array_industria)>-1){
+				industria = true;
+			}
+		}
+
+		if( (concreteira && revenda) || (concreteira && industria) || (revenda && industria) ){
+			return true;
+		}else{
+			return false;
 		}
 	}
+	window.possuiDuplaCategoria = possuiDuplaCategoria;
+
+	function atividadeValida(atividade){
+		var concreteira = industria = false;
+
+		if(jQuery.inArray(parseInt(atividade,), array_concreteira)>-1){
+			concreteira = true;
+		}
+		if(jQuery.inArray(parseInt(atividade,), array_industria)>-1){
+			industria = true;
+		}
+
+		if(concreteira || industria){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	var array_revenda = [
+		4671100,
+		4672900,
+		4673700,
+		4674500,
+		4679601,
+		4679602,
+		4679603,
+		4679604,
+		4679699,
+		4689399,
+		4691500,
+		4693100,
+		4711301,
+		4711302,
+		4712100,
+		4741500,
+		4742300,
+		4743100,
+		4744001,
+		4744002,
+		4744003,
+		4744004,
+		4744005,
+		4744099,
+		4789099
+	];
 	
-	function teste2(){
-		makeCorsRequest();
-		
-		// Create the XHR object.
-		function createCORSRequest(method, url) {
-			var xhr = new XMLHttpRequest();
-			if ("withCredentials" in xhr) {
-				// XHR for Chrome/Firefox/Opera/Safari.
-				xhr.open(method, url, true);
-			} else if (typeof XDomainRequest != "undefined") {
-				// XDomainRequest for IE.
-				xhr = new XDomainRequest();
-				xhr.open(method, url);
-			} else {
-				// CORS not supported.
-				xhr = null;
-			}
-			return xhr;
-		}
-
-		// Helper method to parse the title tag from the response.
-		function getTitle(text) {
-			return text.match('<title>(.*)?</title>')[1];
-		}
-
-		// Make the actual CORS request.
-		function makeCorsRequest() {
-			// This is a sample server that supports CORS.
-			//var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
-			var url = 'https://www.receitaws.com.br/v1/cnpj/00000000000191';
-
-			var xhr = createCORSRequest('GET', url);
-			if (!xhr) {
-				alert('CORS not supported');
-				return;
-			}
-
-			// Response handlers.
-			xhr.onload = function() {
-				var text = xhr.responseText;
-				var title = getTitle(text);
-				alert('Response from CORS request to ' + url + ': ' + title);
-			};
-
-			xhr.onerror = function() {
-				alert('Woops, there was an error making the request.');
-			};
-
-		  xhr.send();
-		}
-	}*/
+	var array_industria = [
+		2073800,
+		2320600,
+		2330301,
+		2330302,
+		2330303,
+		2330399,
+		2342701,
+		2392300
+	];
+	
+	var array_concreteira = [
+		2230305,
+		4110700,
+		4120400,
+		4211101,
+		4211102,
+		4212000,
+		4213800,
+		4221901,
+		4221902,
+		4221903,
+		4221904,
+		4221905,
+		4222701,
+		4222702,
+		4223500,
+		4291000,
+		4292801,
+		4292802,
+		4299501,
+		4299599,
+		4311801,
+		4311802,
+		4312600,
+		4313400,
+		4319300,
+		4321500,
+		4322301,
+		4322302,
+		4322303,
+		4329101,
+		4329102,
+		4329103,
+		4329104,
+		4329105,
+		4329199,
+		4330401,
+		4330402,
+		4330403,
+		4330404,
+		4330405,
+		4330499,
+		4391600,
+		4399101,
+		4399102,
+		4399103,
+		4399104,
+		4399105,
+		4399199
+	];
 });

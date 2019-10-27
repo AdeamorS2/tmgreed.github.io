@@ -38,6 +38,7 @@
 			.impressao li {margin-top: 20px;}
 			.impressao{ page-break-inside: avoid; page-break-before: always; }
 			
+			.input-errado{ border-color: #a94442; background-color: #ff000012!important; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); box-shadow: inset 0 1px 1px rgba(0,0,0,.075); }
 			@media print{
 				.nao-impressao, .nao-impressao * {
 					display: none !important;
@@ -65,130 +66,128 @@
 				</div>
 				
 				<div id="passo-2" style="display: none;">
-					<form class="">
+					<form>
 						<h3 class="text-lg-center cor-fonte-padrao">Empresa Encontrada!</h3>
 						<div class="form-group pt-5" style="margin-bottom: 0;">
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Nome:</b></label>
-								<label class="cor-fonte-padrao" id="nome"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="nome"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Situação:</b></label>
-								<label class="cor-fonte-padrao" id="situacao"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="situacao"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Fantasia:</b></label>
-								<label class="cor-fonte-padrao" id="fantasia"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="fantasia"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Data Situação:</b></label>
-								<label class="cor-fonte-padrao" id="data_situacao"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="data_situacao"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>CNPJ:</b></label>
-								<label class="cor-fonte-padrao" id="cnpj"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="cnpj"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Última Atualização:</b></label>
-								<label class="cor-fonte-padrao" id="ultima_atualizacao"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="ultima_atualizacao"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Porte:</b></label>
-								<label class="cor-fonte-padrao" id="porte"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="porte"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Abertura:</b></label>
-								<label class="cor-fonte-padrao" id="abertura"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="abertura"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Natureza Jurídica:</b></label>
-								<label class="cor-fonte-padrao" id="natureza_juridica"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="natureza_juridica"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Status:</b></label>
-								<label class="cor-fonte-padrao" id="status"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="status"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Tipo:</b></label>
-								<label class="cor-fonte-padrao" id="tipo"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="tipo"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>EFR:</b></label>
-								<label class="cor-fonte-padrao" id="efr"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="efr"></label>
 							</div>
 							
 							<div class="elemento-par-inf pt-3">
 								<label class="cor-fonte-padrao"><b>Logradouro:</b></label>
-								<label class="cor-fonte-padrao" id="logradouro"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="logradouro"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Numero:</b></label>
-								<label class="cor-fonte-padrao" id="numero"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="numero"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Complemento:</b></label>
-								<label class="cor-fonte-padrao" id="complemento"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="complemento"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Bairro:</b></label>
-								<label class="cor-fonte-padrao" id="bairro"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="bairro"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Município:</b></label>
-								<label class="cor-fonte-padrao" id="municipio"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="municipio"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>UF:</b></label>
-								<label class="cor-fonte-padrao" id="uf"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="uf"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>CEP:</b></label>
-								<label class="cor-fonte-padrao" id="cep"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="cep"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Telefone:</b></label>
-								<label class="cor-fonte-padrao" id="telefone"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="telefone"></label>
 							</div>
 							
 							<div class="elemento-par-inf pt-3">
 								<label class="cor-fonte-padrao"><b>E-mail:</b></label>
-								<label class="cor-fonte-padrao" id="email"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="email"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Capital Social:</b></label>
-								<label class="cor-fonte-padrao" id="capital_social"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="capital_social"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Situação Especial:</b></label>
-								<label class="cor-fonte-padrao" id="situacao_especial"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="situacao_especial"></label>
 							</div>
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Motivo Situação:</b></label>
-								<label class="cor-fonte-padrao" id="motivo_situacao"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="motivo_situacao"></label>
 							</div>
 							
 							<div class="elemento-par-inf">
 								<label class="cor-fonte-padrao"><b>Data Situação:</b></label>
-								<label class="cor-fonte-padrao" id="data_situacao_especial"></label>
+								<label class="cor-fonte-padrao" class="texto_resultado" id="data_situacao_especial"></label>
 							</div>
-							
-							
 							
 							<label class="cor-fonte-padrao pt-4" style="width: 100%;">Lista de Atividades</label>
 							<table class="table-lista-atividades w-100">
 								<thead>
-									<th align="center">CNAE</th>
-									<th align="center">Código</th>
+									<th align="center" width="5%">Índice</th>
+									<th align="center" width="20%">CNAE</th>
 									<th style="text-align: left;">Atividade</th>
 								</thead>
 								<tbody id="lista-atividades-inf"></tbody>
@@ -197,14 +196,22 @@
 							<label class="cor-fonte-padrao pt-2" style="width: 100%;">Selecione a Atividade Principal</label>
 							<div id="lista-atividades" title="Atividade principal a ser utilizada para este contrato"></div>
 							
+							<span class="alert-danger p-2 atividade-inelegivel" style="border-radius: 2px; display: none;">
+								<label class="cor-fonte-padrao pt-2" style="width: 99%; margin-bottom: 10px; margin-top: 10px;">Erro: A atividade selecionada para compras não é compatível. Por gentileza selecionar um CNAE válido.</label>
+							</span>
+							
 							<label class="cor-fonte-padrao pt-2" style="width: 100%;">Responsável legal:</label>
 							<input class="form-control" type="text" id="input_responsavel_footer" title="Nome da pessoa que está assinando"/>
 							
 							<label class="cor-fonte-padrao pt-2" style="width: 100%;">CPF:</label>
-							<input class="form-control mb-4" type="text" maxlength="14" id="input_cpf_footer" title="CPF da pessoa que está assinando"/>
+							<input class="form-control mb-2" type="text" maxlength="14" id="input_cpf_footer" title="CPF da pessoa que está assinando"/>
 							
+							<span class="alert-danger p-2 cnpj-inelegivel" style="border-radius: 2px; display: none;">
+								<label class="cor-fonte-padrao pt-2" style="width: 99%; margin-bottom: 30px;">Erro: O CNPJ informado não se enquadra nos requisitos de Dupla Categoria e, portanto, não é possível realizar a Declaração de CNAE. Para demais validações, por gentileza contatar a Área Fiscal.</label>
+							</span>
+
 							<button onclick="return false;" id="voltar" class="btn btn-danger">Voltar</button>
-							<button onclick="return false;" id="prosseguir" class="float-right btn btn-success">Prosseguir</button>
+							<button onclick="return false;" id="prosseguir" style="display: none;" class="float-right btn btn-success">Prosseguir</button>
 						</div>
 					</form>
 				</div>

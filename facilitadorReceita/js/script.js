@@ -3,6 +3,8 @@ $(document).ready(function(){
 		busca();
 	});
 	
+	alert('teste');
+
 	$('#prosseguir').on('click', function(){
 		if($('#input_responsavel_footer').val()!=''){
 			$('#responsavel_footer').text('Responsável legal: '+$('#input_responsavel_footer').val());

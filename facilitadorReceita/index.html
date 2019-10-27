@@ -28,15 +28,16 @@
 			.impressao .identificacao{text-align: left; font-size: 17px;}
 			.impressao h1{padding-bottom: 15px;}
 
-			.footer { position: fixed; bottom: 0; padding-bottom: 50px; width: 72%;}
+			.footer { bottom: 0; padding-bottom: 50px; }
 			.footer label{margin-right: 20px;}
 			.footer .centro{margin-left: auto; margin-right: auto;}
 			.footer .centro label{width: 100%; text-align: center;}
 			.impressao label{ text-align: justify; font-size: 20px;line-height: 35px;}
 			.impressao { padding-left: 100px;  padding-right: 100px; font-family: Calibri!important;}
-			.impressao #lista_atividades_impressao {    font-weight: bold; font-family: Arial!important; font-size: 16px;}
+			.impressao #lista_atividades_impressao { font-weight: bold; font-family: Arial!important; font-size: 16px;}
 			.impressao li {margin-top: 20px;}
 			.impressao{ page-break-inside: avoid; page-break-before: always; }
+			.impressao .nao-quebrar{ page-break-inside: avoid; page-break-before: always; }
 			
 			.input-errado{ border-color: #a94442; background-color: #ff000012!important; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); box-shadow: inset 0 1px 1px rgba(0,0,0,.075); }
 			@media print{
@@ -247,21 +248,23 @@
 					
 					<div style="clear: both;"></div>
 					
-					<label id="email_impressao">TESTE</label>
+					<label id="email_impressao"></label>
 					
 					<div style="clear: both;"></div>
-					<label style="margin-top: 50px; text-align: center; width: 100%;" id="data_impressao">TESTE</label>
-					
-					
-					<div class="footer">
-						<div class="centro">
-							<div style="clear: both;"></div>
-							<label id="responsavel_footer">responsavel legal:</label>
-							<div style="clear: both;"></div>
-							<label id="cpf_footer">CPF: </label>
-							<div style="clear: both;"></div>
-							<label>Assinatura: ____________________</label>
+					<div class="nao-quebrar">
+						<label style="margin-top: 50px; text-align: center; width: 100%;" id="data_impressao"></label>
+						
+						<div class="footer">
+							<div class="centro">
+								<div style="clear: both;"></div>
+								<label id="responsavel_footer">responsavel legal:</label>
+								<div style="clear: both;"></div>
+								<label id="cpf_footer">CPF: </label>
+								<div style="clear: both;"></div>
+								<label>Assinatura: ____________________</label>
+							</div>
 						</div>
+						
 					</div>
 					
 				</div>

@@ -123,7 +123,9 @@ $(document).ready(function(){
 				}
 				html += '</select>';
 				$('#lista-atividades').html(html);
-				$('.atividade-inelegivel').hide();
+				setTimeOut(function(){
+					$('.atividade-inelegivel').hide();
+				}, 400);
 				
 				//############################ BLOQUEIA DECLARAÇÃO POR NÃO POSSUIR DUPLA CATEGORIA
 				if(possuiDuplaCategoria(array_atividades)){

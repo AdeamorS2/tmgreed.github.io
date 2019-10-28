@@ -68,10 +68,17 @@ $(document).ready(function(){
 	});
 	
 	$('#cnpj_entrada').on('blur', function(){
-		var entrada = $(this).val();
-		entrada = entrada.replace(/\D/g,'');
-		$(this).val(entrada);
+		formataCNPJ();
 	});
+	$('#cnpj_entrada').on('change', function(){
+		formataCNPJ();
+	});
+	
+	function formataCNPJ(){
+		var entrada = $('#cnpj_entrada').val();
+		entrada = entrada.replace(/\D/g,'');
+		$('#cnpj_entrada').val(entrada);
+	}
 	
 	function busca(){
 		var baseURL = 'https://www.receitaws.com.br/v1/cnpj/';

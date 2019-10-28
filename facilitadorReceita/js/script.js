@@ -123,7 +123,7 @@ $(document).ready(function(){
 				}
 				html += '</select>';
 				$('#lista-atividades').html(html);
-				setTimeOut(function(){
+				setTimeout(function(){
 					$('.atividade-inelegivel').hide();
 				}, 400);
 				

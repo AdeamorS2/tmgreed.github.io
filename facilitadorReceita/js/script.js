@@ -53,7 +53,7 @@ $(document).ready(function(){
 	$(document).on('change', '#atividade_selecionada', function(){
 		$('#atividade_selecionada').removeClass('input-errado');
 		if($('#atividade_selecionada').val()==-1){
-			$('.atividade-inelegivel').show();
+			$('.atividade-inelegivel').css('display', 'inline-block');
 			$('#prosseguir').hide();
 			return;
 		}
@@ -62,7 +62,7 @@ $(document).ready(function(){
 			$('#prosseguir').show();
 		}else{
 			$('#atividade_selecionada').addClass('input-errado');
-			$('.atividade-inelegivel').show();
+			$('.atividade-inelegivel').css('display', 'inline-block');
 			$('#prosseguir').hide();
 		}
 	});
@@ -129,7 +129,7 @@ $(document).ready(function(){
 				if(possuiDuplaCategoria(array_atividades)){
 					$('.cnpj-inelegivel').hide();
 				}else{
-					$('.cnpj-inelegivel').show();
+					$('.atividade-inelegivel').css('display', 'inline-block');
 				}
 				
 				//############################ LISTA ATIVIDADES

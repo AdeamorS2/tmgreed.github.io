@@ -132,7 +132,7 @@ $(document).ready(function(){
 					$('.cnpj-inelegivel').hide();
 					$('#prosseguir').show();
 				}else{
-					$('.atividade-inelegivel').css('display', 'inline-block');
+					$('.cnpj-inelegivel').css('display', 'inline-block');
 					$('#prosseguir').hide();
 				}
 				

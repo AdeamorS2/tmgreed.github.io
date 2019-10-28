@@ -132,6 +132,11 @@ $(document).ready(function(){
 					$('.cnpj-inelegivel').hide();
 					$('#prosseguir').show();
 				}else{
+					html += '<select class="form-control" id="atividade_selecionada">';
+					html += '<option value="-1">&lt;CNPJ não elegível&gt;</option>';
+					html += '</select>';
+					$('#lista-atividades').html(html);
+					
 					$('.cnpj-inelegivel').css('display', 'inline-block');
 					$('#prosseguir').hide();
 				}

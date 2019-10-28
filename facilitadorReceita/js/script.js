@@ -130,8 +130,10 @@ $(document).ready(function(){
 				//############################ BLOQUEIA DECLARAÇÃO POR NÃO POSSUIR DUPLA CATEGORIA
 				if(possuiDuplaCategoria(array_atividades)){
 					$('.cnpj-inelegivel').hide();
+					$('#prosseguir').show();
 				}else{
 					$('.atividade-inelegivel').css('display', 'inline-block');
+					$('#prosseguir').hide();
 				}
 				
 				//############################ LISTA ATIVIDADES
